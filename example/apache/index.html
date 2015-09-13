@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>SHDS</title>
+  </head>
+  <body>
+    <section>
+      <header><h1>SH Data Science</h1></header>
+      <article>
+        <form>
+      	    <input id="search" type="search" placeholder="Search..." /><button id="search_button" type="button">Search</button>
+			<div id="terms"></div>
+            <script>
+var element = document.getElementById('search_button');
+element.addEventListener('click', search, false);
+
+function search(e)
+{
+	var value = document.getElementById('search').value;
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open('GET','index.html?q=' + value, true);
+	xmlhttp.send();
+	var termsElement = document.getElementById('terms');
+	termsElement.innerHTML=termsElement.innerHTML + "<br />" + value;
+}
+            </script>  
+
+        </form>
+      </article>
+    </section>
+  </body>
+</html>
