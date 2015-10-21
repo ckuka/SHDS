@@ -19,5 +19,5 @@ WITH SERDEPROPERTIES (
 stored as sequencefile
 LOCATION 'hdfs://localhost:9000/user/kr/tmp/';
 
-#
+#Wordcount Query -- Parses request line by creating an example url, and using builtin parse url function to extract the QUERY parameter q.
 select parse_url(concat("http://www.some_example.com",split(requestline,' ')[1]),'QUERY','q') as query, count(*) co from apachelog6 group by parse_url(concat("http://www.some_example.com",split(requestline,' ')[1]),'QUERY','q');
