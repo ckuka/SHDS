@@ -1,7 +1,8 @@
 #Create table statement.
 #Specifies fields types, quote and field delimiters
 #Specifies expected filetype as sequence file
-#CHANGE <hadoop_server> with your hdfs server location. For example, if your hadoop server is running locally, this would be localhost:9000
+#Change LOCATION with the path to your apache access logs on hdfs (check the location where the flume agent wrote out these files in hdfs) location. 
+#For example, on my hadoop server, this is - hdfs://localhost:9000/user/kr/tmp/
 CREATE EXTERNAL TABLE apache_log (
    ipaddress STRING, 
    identd STRING, 
@@ -17,7 +18,8 @@ WITH SERDEPROPERTIES (
 'field.delim'=' ',
 'serialization.null.format'='-')
 stored as sequencefile
-LOCATION 'hdfs://localhost:9000/user/kr/tmp/';
+LOCATION 'hdfs://<hdfs_server/path/to/apache/files/';
 
 #Wordcount Query -- Parses request line by creating an example url, and using builtin parse url function to extract the QUERY parameter q.
 select parse_url(concat("http://www.some_example.com",split(requestline,' ')[1]),'QUERY','q') as query, count(*) co from apachelog6 group by parse_url(concat("http://www.some_example.com",split(requestline,' ')[1]),'QUERY','q');
+
