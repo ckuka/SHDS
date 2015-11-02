@@ -5,10 +5,10 @@
 >
  <modelVersion>4.0.0</modelVersion>
  <groupId>cc.kuka.hadoop</groupId>
- <artifactId>shds-example</artifactId>
+ <artifactId>shds-example-hbase</artifactId>
  <version>0.0.1-SNAPSHOT</version>
  <packaging>jar</packaging>
- <name>shds-example</name>
+ <name>shds-example-hbase</name>
  <properties>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
  </properties>
@@ -24,6 +24,21 @@
    <version>4.10</version>
    <scope>test</scope>
   </dependency>
+  <dependency>
+   <groupId>org.apache.hbase</groupId>
+   <artifactId>hbase-common</artifactId>
+   <version>1.1.2</version>
+  </dependency>
+    <dependency>
+   <groupId>org.apache.hbase</groupId>
+   <artifactId>hbase-client</artifactId>
+   <version>1.1.2</version>
+    </dependency>
+  <dependency>
+    <groupId>org.apache.hbase</groupId>
+    <artifactId>hbase-server</artifactId>
+    <version>1.1.2</version>
+</dependency>
  </dependencies>
  <build>
   <plugins>
