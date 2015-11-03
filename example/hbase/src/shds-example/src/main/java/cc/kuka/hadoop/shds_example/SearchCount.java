@@ -21,7 +21,6 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.SequenceFileInputFormat;
-import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
 /**
  * Hadoop Map/Reduce example for the Shanghai Data Science Meetup
@@ -83,6 +82,9 @@ public class SearchCount {
 
 		Job job = new Job(conf, "searchcount");
 
+		job.setMapOutputKeyClass(Text.class);
+		job.setMapOutputValueClass(IntWritable.class);
+
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);
 
@@ -90,7 +92,8 @@ public class SearchCount {
 		job.setReducerClass(Reduce.class);
 
 		job.setInputFormatClass(SequenceFileInputFormat.class);
-		job.setOutputFormatClass(TextOutputFormat.class);
+		// job.setOutputFormatClass(TextOutputFormat.class);
+		job.setNumReduceTasks(1);
 
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 
