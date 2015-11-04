@@ -23,7 +23,8 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.SequenceFileInputFormat;
 
 /**
- * Hadoop Map/Reduce example for the Shanghai Data Science Meetup
+ * Hadoop Map/Reduce example with HBase storage for the Shanghai Data Science
+ * Meetup
  * 
  * @author Karthik Rajasethupathy
  * @author Christian Kuka
@@ -92,7 +93,6 @@ public class SearchCount {
 		job.setReducerClass(Reduce.class);
 
 		job.setInputFormatClass(SequenceFileInputFormat.class);
-		// job.setOutputFormatClass(TextOutputFormat.class);
 		job.setNumReduceTasks(1);
 
 		FileInputFormat.addInputPath(job, new Path(args[0]));
